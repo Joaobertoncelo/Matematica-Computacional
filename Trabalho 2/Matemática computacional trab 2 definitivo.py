@@ -1,5 +1,5 @@
 import math
-import numpy as np
+import matplotlib.pyplot as plt
 
 def taylor_seno(x, n):
     """
@@ -16,12 +16,21 @@ def taylor_seno(x, n):
     return seno
 
 def pade_seno(x):
-    p = x - (1/math.factorial(3)) - (1/math.factorial(7))
+    a = -1/6
+    b = 1/120
+    c = -1/5040
+    d = 1/362880
+    e = -1/39916800
+    y = x*x
+    p = x * (1 + y * (a + y * (b + y * (c + y * ( d + y * e)))))
     return p
 
+#def plotagem():
+    
+#plotagem()
 
 def main():
-    # Lê o valor de x e n a partir do usuário
+    # Lê o valor de x a partir do usuário
     x = float(input("Digite o valor de x: "))
     n = 11
 
@@ -33,10 +42,11 @@ def main():
     seno_pade_aprox = pade_seno(x)
 
     # Imprime os resultados
-    print(f"O seno de {x} é {seno_exato:.9f}")
-    print(f"A aproximação taylor com {n} termos é {seno_taylor_aprox:.9f}")
-    print(f"A aproximação pade com {n} termos é {seno_pade_aprox:.9f}")
-    print(f"A diferença é {abs(seno_exato - seno_taylor_aprox):.9f}")
+    print(f"O seno de {x} é {seno_exato:.11f}")
+    print(f"A aproximação taylor com {n} termos é {seno_taylor_aprox:.11f}")
+    print(f"A aproximação pade com {n} termos é {seno_pade_aprox:.11f}")
+    print(f"A diferença taylor é {abs(seno_exato - seno_taylor_aprox):.11f}")
+    print(f"A diferença pade é {abs(seno_exato - seno_pade_aprox):.11f}")
 
 if __name__ == '__main__':
     main()
