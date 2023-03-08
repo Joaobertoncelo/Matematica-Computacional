@@ -16,18 +16,20 @@ def taylor_seno(x, n):
     return seno
 
 def pade_seno(x):
+    # Alocando os valores do cálculo a constantes para diminuir o trabalho do computador
     a = -1/6
     b = 1/120
     c = -1/5040
     d = 1/362880
     e = -1/39916800
     y = x*x
+    # Método Pade
     p = x * (1 + y * (a + y * (b + y * (c + y * ( d + y * e)))))
     return p
 
-#def plotagem():
-    
-#plotagem()
+def plotagem(seno_exato, seno_taylor_aprox, seno_pade_aprox):
+        
+plotagem()
 
 def main():
     # Lê o valor de x a partir do usuário
