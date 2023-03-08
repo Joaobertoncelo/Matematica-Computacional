@@ -28,8 +28,9 @@ def pade_seno(x):
     return p
 
 def plotagem(seno_exato, seno_taylor_aprox, seno_pade_aprox):
+    plt.plot(seno_exato, seno_taylor_aprox, seno_pade_aprox)
+    plt.show()
         
-plotagem()
 
 def main():
     # Lê o valor de x a partir do usuário
@@ -49,6 +50,7 @@ def main():
     print(f"A aproximação pade com {n} termos é {seno_pade_aprox:.11f}")
     print(f"A diferença taylor é {abs(seno_exato - seno_taylor_aprox):.11f}")
     print(f"A diferença pade é {abs(seno_exato - seno_pade_aprox):.11f}")
+    plotagem(seno_exato, seno_taylor_aprox, seno_pade_aprox)
 
 if __name__ == '__main__':
     main()
