@@ -1,4 +1,5 @@
 import math
+import numpy as np
 import matplotlib.pyplot as plt
 
 def taylor_seno(x, n):
@@ -27,30 +28,34 @@ def pade_seno(x):
     p = x * (1 + y * (a + y * (b + y * (c + y * ( d + y * e)))))
     return p
 
-def plotagem(seno_exato, seno_taylor_aprox, seno_pade_aprox):
-    plt.plot(seno_exato, seno_taylor_aprox, seno_pade_aprox)
+def plotagem(corretos, aproximacoes_taylor, aproximacoes_pade):
+    plt.plot(corretos, aproximacoes_taylor, aproximacoes_pade, 'k--')
+    plt.plot(corretos, aproximacoes_taylor, aproximacoes_pade, 'go')
     plt.show()
-        
 
 def main():
-    # Lê o valor de x a partir do usuário
-    x = float(input("Digite o valor de x: "))
     n = 11
+    valores_corretos = []
+    aproximacoes_taylor = []
+    aproximacoes_pade = []
 
-    # Calcula o seno exato usando a função sin() do módulo math
-    seno_exato = math.sin(x)
+    for x in np.arange(0, 10.1, 0.1):
+        # Calcula o seno exato usando a função sin() do módulo numpy
+        valores_corretos.append(np.sin(x))
 
-    # Calcula uma aproximação do seno usando a função aprox_seno() definida acima
-    seno_taylor_aprox = taylor_seno(x, n)
-    seno_pade_aprox = pade_seno(x)
+        # Calcula uma aproximação do seno usando a função aprox_seno() definida acima
+        aproximacoes_taylor.append(taylor_seno(x, n))
+        aproximacoes_pade.append(pade_seno(x))
+        print(f'{np.sin(x)} {taylor_seno(x, n)} {pade_seno(x)}')
+
+    #plotagem(valores_corretos, aproximacoes_taylor, aproximacoes_pade)
 
     # Imprime os resultados
-    print(f"O seno de {x} é {seno_exato:.11f}")
-    print(f"A aproximação taylor com {n} termos é {seno_taylor_aprox:.11f}")
-    print(f"A aproximação pade com {n} termos é {seno_pade_aprox:.11f}")
-    print(f"A diferença taylor é {abs(seno_exato - seno_taylor_aprox):.11f}")
-    print(f"A diferença pade é {abs(seno_exato - seno_pade_aprox):.11f}")
-    plotagem(seno_exato, seno_taylor_aprox, seno_pade_aprox)
+    #print(f"O seno de {x} é {seno_exato:.11f}")
+    #print(f"A aproximação taylor com {n} termos é {seno_taylor_aprox:.11f}")
+    #print(f"A aproximação pade com {n} termos é {seno_pade_aprox:.11f}")
+    #print(f"A diferença taylor é {abs(seno_exato - seno_taylor_aprox):.11f}")
+    #print(f"A diferença pade é {abs(seno_exato - seno_pade_aprox):.11f}")
 
 if __name__ == '__main__':
     main()
