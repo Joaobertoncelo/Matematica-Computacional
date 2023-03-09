@@ -29,8 +29,9 @@ def pade_seno(x):
     return p
 
 def plotagem(corretos, aproximacoes_taylor, aproximacoes_pade):
-    plt.plot(corretos, aproximacoes_taylor, aproximacoes_pade, 'k--')
-    plt.plot(corretos, aproximacoes_taylor, aproximacoes_pade, 'go')
+    plt.plot(aproximacoes_pade, 'k--', label="pade")
+    plt.plot(aproximacoes_taylor, 'go', label="taylor")
+    plt.plot(corretos)
     plt.show()
 
 def main():
@@ -39,16 +40,19 @@ def main():
     aproximacoes_taylor = []
     aproximacoes_pade = []
 
-    for x in np.arange(0, 10.1, 0.1):
+    for x in np.arange(0, 20.1, 0.1):
         # Calcula o seno exato usando a função sin() do módulo numpy
         valores_corretos.append(np.sin(x))
+        #print(valores_corretos)
 
         # Calcula uma aproximação do seno usando a função aprox_seno() definida acima
         aproximacoes_taylor.append(taylor_seno(x, n))
+        print(aproximacoes_taylor)
         aproximacoes_pade.append(pade_seno(x))
-        print(f'{np.sin(x)} {taylor_seno(x, n)} {pade_seno(x)}')
+        #print(aproximacoes_pade)
+        #print(f'{np.sin(x)} {taylor_seno(x, n)} {pade_seno(x)}')
 
-    #plotagem(valores_corretos, aproximacoes_taylor, aproximacoes_pade)
+    plotagem(valores_corretos, aproximacoes_taylor, aproximacoes_pade)
 
     # Imprime os resultados
     #print(f"O seno de {x} é {seno_exato:.11f}")
