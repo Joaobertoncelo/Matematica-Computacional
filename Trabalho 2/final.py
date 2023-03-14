@@ -22,16 +22,26 @@ def taylor(x):
     return x * (1 + y * (a + y * (b + y * (c + y * (d + y * e)))))
 
 # Intervalo de x para plotar o gráfico
-x = np.linspace(-(np.pi), (np.pi), 10000)
+x = np.linspace(-(np.pi/4), (np.pi/4), 10000)
+
+def erro_pade(x):
+    return abs(f(x) - pade(x))
+
+def erro_taylor(x):
+    return abs(f(x) - taylor(x))
 
 # Cálculo dos valores de y
-y = f(x)
-y_pade = pade(x)
-y_taylor = taylor(x)
+#y = f(x)
+#y_pade = pade(x)
+#y_taylor = taylor(x)
+y_erro_p = erro_pade(x)
+y_erro_t = erro_taylor(x)
 
 # Plotando o gráfico
-plt.plot(x, y, label="Seno")
-plt.plot(x, y_pade, label="Aproximação de Padé")
-plt.plot(x, y_taylor, label="Aproximação de Taylor")
+#plt.plot(x, y, label="Seno")
+#plt.plot(x, y_pade, label="Aproximação de Padé")
+#plt.plot(x, y_taylor, label="Aproximação de Taylor")
+plt.plot(x, y_erro_p, label="Erro de Padé")
+plt.plot(x, y_erro_t, label="Erro de Taylor")
 plt.legend()
 plt.show()
