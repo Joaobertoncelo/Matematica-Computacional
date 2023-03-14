@@ -5,19 +5,24 @@ import matplotlib.pyplot as plt
 def f(x):
     return np.sin(x)
 
-# Aproximação de Padé com 11 elementos
-p = np.poly1d([1575/6912, 0, -245/1152, 0, 49/512, 0, -1/16, 0, 1/720, 0, -1/40320])
+# Aproximação de Padé com (7,4) elementos
+def pade(x):
+    p = ((-1331)*(x**7) + 126210*(x**5) + (-3643920)*(x**3) + 24948000*x)/(3990*(x**4) + 514080*(x**2) + 24948000) 
+    return p
 
 # Aproximação de Taylor com 11 termos
 def taylor(x):
-    return x - x**3/6 + x**5/120 - x**7/5040 + x**9/362880 - x**11/39916800
+    #para X ao quadrado
+    y = x*x
+    p = x(1+y*(-(1/6)+y*((1/120) + y*(-(1/5040)+ y*((1/362880)+ y*(-(1/39916800)))))))
+    return p
 
 # Intervalo de x para plotar o gráfico
-x = np.linspace(-np.pi, np.pi, 100)
+x = np.linspace(-(np.pi)/4, (np.pi)/4, 100)
 
 # Cálculo dos valores de y
 y = f(x)
-y_pade = p(x)
+y_pade = pade(x)
 y_taylor = taylor(x)
 
 # Plotando o gráfico
