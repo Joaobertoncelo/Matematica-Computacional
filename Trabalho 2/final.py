@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 def f(x):
     return np.sin(x)
 
-# Aproximação de Padé com 11 elementos
+# Aproximação de Padé com (7,4) elementos
 p = np.poly1d([1575/6912, 0, -245/1152, 0, 49/512, 0, -1/16, 0, 1/720, 0, -1/40320])
 
 # Aproximação de Taylor com 11 termos

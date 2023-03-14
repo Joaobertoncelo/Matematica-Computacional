@@ -25,7 +25,7 @@ def taylor(x):
 #    return p
 
 # Intervalo de x para plotar o gráfico
-x = np.linspace(-(np.pi), (np.pi), 100000)
+x = np.linspace(-(np.pi)/4, (np.pi)/4, 100000)
 
 # Cálculo dos valores de y
 y = f(x) * 1e12
