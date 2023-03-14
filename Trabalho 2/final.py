@@ -13,7 +13,7 @@ def taylor(x):
     return x - x**3/6 + x**5/120 - x**7/5040 + x**9/362880 - x**11/39916800
 
 # Intervalo de x para plotar o gráfico
-x = np.linspace(-(np.pi), (np.pi), 10000000)
+x = np.linspace(-(np.pi), (np.pi), 10000)
 
 # Cálculo dos valores de y
 y = f(x) * 1e12
