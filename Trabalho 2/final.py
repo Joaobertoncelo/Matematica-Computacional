@@ -5,25 +5,33 @@ import matplotlib.pyplot as plt
 def f(x):
     return np.sin(x)
 
-# Aproximação de Padé com (7,4) elementos
-p = np.poly1d([1575/6912, 0, -245/1152, 0, 49/512, 0, -1/16, 0, 1/720, 0, -1/40320])
+# Aproximação de Padé de ordem (7,4) elementos
+p = np.poly1d([-121/2268000, 0, 601/118800, 0, -241/1650, 0, 1, 0])
+q = np.poly1d([19/118800, 0, 17/825, 0, 1])
+def pade(x):
+    return p(x)/q(x)
 
-# Aproximação de Taylor com 11 termos
+# Aproximação de Taylor com 6 termos
+a = -1/6
+b = 1/120
+c = -1/5040
+d = 1/362880
+e = -1/39916800
 def taylor(x):
-    return x - x**3/6 + x**5/120 - x**7/5040 + x**9/362880 - x**11/39916800
+    y = x * x
+    return x * (1 + y * (a + y * (b + y * (c + y * (d + y * e)))))
 
 # Intervalo de x para plotar o gráfico
 x = np.linspace(-(np.pi), (np.pi), 10000)
 
 # Cálculo dos valores de y
-y = f(x) * 1e12
-y_pade = p(x) * 1e12
-y_taylor = taylor(x) * 1e12
+y = f(x)
+y_pade = pade(x)
+y_taylor = taylor(x)
 
 # Plotando o gráfico
 plt.plot(x, y, label="Seno")
 plt.plot(x, y_pade, label="Aproximação de Padé")
 plt.plot(x, y_taylor, label="Aproximação de Taylor")
 plt.legend()
-plt.ylabel("-1e12")
 plt.show()
