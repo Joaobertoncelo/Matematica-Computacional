@@ -6,7 +6,10 @@ def f(x):
     return np.sin(x)
 
 # Aproximação de Padé com 11 elementos
-p = np.poly1d([1575/6912, 0, -245/1152, 0, 49/512, 0, -1/16, 0, 1/720, 0, -1/40320])
+p = np.poly1d([1, 0, -1/6, 0, 1/120, 0, -1/5040, 0, 1/362880, 0, -1/39916800])
+q = np.poly1d([1, 0, 17/825, 0, 19/118800, 0, 1])
+def pade(x):
+    return p(x)/q(x)
 
 # Aproximação de Padé com (7,4) elementos
 #def pade(x):
